@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: atlas-core-api
+  threads:
+    virtual:
+      enabled: true
+  mvc:
+    problemdetails:
+      enabled: true
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/atlas}
+    username: ${DB_USERNAME:atlas}
+    password: ${DB_PASSWORD:atlas}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+  docker:
+    compose:
+      enabled: ${DOCKER_COMPOSE_ENABLED:false}
+
+server:
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: when_authorized
+  tracing:
+    sampling:
+      probability: ${TRACING_SAMPLE_PROBABILITY:1.0}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+atlas:
+  security:
+    enabled: ${ATLAS_SECURITY_ENABLED:false}
+  intelligence:
+    base-url: ${ATLAS_INTELLIGENCE_URL:http://localhost:8000}
+
