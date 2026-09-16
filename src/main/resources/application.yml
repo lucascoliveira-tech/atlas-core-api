@@ -48,4 +48,9 @@ atlas:
     enabled: ${ATLAS_SECURITY_ENABLED:false}
   intelligence:
     base-url: ${ATLAS_INTELLIGENCE_URL:http://localhost:8000}
-
+    provider: ${ATLAS_INTELLIGENCE_PROVIDER:simulator}
+    timeout: ${ATLAS_INTELLIGENCE_TIMEOUT:10s}
+    connect-timeout: ${ATLAS_INTELLIGENCE_CONNECT_TIMEOUT:1s}
+    read-timeout: ${ATLAS_INTELLIGENCE_READ_TIMEOUT:10s}
+    auth:
+      bearer-token: ${ATLAS_INTELLIGENCE_BEARER_TOKEN:}

@@ -29,6 +29,9 @@ O perfil padrão permite chamadas sem autenticação para facilitar o desenvolvi
 Endpoints iniciais:
 
 - Status: `GET http://localhost:8080/api/v1/status`
+- Criar sessão: `POST http://localhost:8080/api/v1/diagnostic-sessions`
+- Gerar análise: `POST http://localhost:8080/api/v1/diagnostic-sessions/{id}/analysis`
+- Consultar análise: `GET http://localhost:8080/api/v1/diagnostic-sessions/{id}/analysis`
 - Health: `GET http://localhost:8080/actuator/health`
 - Métricas: `GET http://localhost:8080/actuator/prometheus`
 - Swagger UI: `http://localhost:8080/swagger-ui.html`
@@ -63,6 +66,11 @@ O banco começa com a migration `V1__create_diagnostic_session.sql`. As próxima
 | `DB_PASSWORD` | senha do banco | `atlas` |
 | `ATLAS_SECURITY_ENABLED` | habilita JWT | `false` |
 | `ATLAS_INTELLIGENCE_URL` | URL do serviço de inteligência | `http://localhost:8000` |
+| `ATLAS_INTELLIGENCE_PROVIDER` | provedor de análise (`simulator`) | `simulator` |
+| `ATLAS_INTELLIGENCE_TIMEOUT` | timeout do provedor de análise | `10s` |
+| `ATLAS_INTELLIGENCE_CONNECT_TIMEOUT` | timeout de conexão HTTP | `1s` |
+| `ATLAS_INTELLIGENCE_READ_TIMEOUT` | timeout de leitura HTTP | `10s` |
+| `ATLAS_INTELLIGENCE_BEARER_TOKEN` | token do provider HTTP | vazio; obrigatório quando `provider=http` |
 | `TRACING_SAMPLE_PROBABILITY` | amostragem de traces | `1.0` |
 
 Nunca versione segredos reais; use `.env` apenas no ambiente local e um gerenciador de segredos nos ambientes publicados.
